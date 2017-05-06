@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/RefreshRecycleView.iml" filepath="$PROJECT_DIR$/.idea/RefreshRecycleView.iml" />
+      <module fileurl="file://D:\AndroidProject\RefreshRecycleView\app\RefreshRecycleView-app.iml" filepath="D:\AndroidProject\RefreshRecycleView\app\RefreshRecycleView-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smartrecycleviewlibrary/smartrecycleviewlibrary.iml" filepath="$PROJECT_DIR$/smartrecycleviewlibrary/smartrecycleviewlibrary.iml" />
+    </modules>
+  </component>
+</project>
