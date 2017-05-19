@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.gersion.smart.R;
 import com.gersion.smartrecycleviewlibrary.ptr2.PullToRefreshLayout;
 
@@ -38,7 +37,7 @@ public class SmartRecycleView extends RelativeLayout {
     private boolean mIsLoadMore;
     private boolean mLoadMoreEnable;
     private LayoutManagerType mLayoutManagerType;
-    private BaseQuickAdapter mAdapter;
+    private IRVAdapter mAdapter;
     private int currentPage = 0;
     private int firstPage;//第一页的序号
     private boolean isFirstLoad = true;//第一次初始化加载
@@ -113,7 +112,6 @@ public class SmartRecycleView extends RelativeLayout {
     public <T> void onRefresh(List<T> data) {
         if (data == null) {
             if (isFirstLoad) {
-                isFirstLoad = false;
                 setViewStatus(ViewStatus.FAILED);
             } else {
                 mPullRereshLayout.onRefreshErr();
@@ -125,13 +123,15 @@ public class SmartRecycleView extends RelativeLayout {
             }
             if (data.size() == 0) {
                 setViewStatus(ViewStatus.NO_DATA);
+                refreshEnable(false);
             } else {
                 currentPage = firstPage+1;
                 mAdapter.setNewData(data);
                 if (data.size() >= mPageSize) {
                     mPullRereshLayout.onRefreshSuccess();
                 } else {
-                    mPullRereshLayout.setNoMoreData(true);
+                    mPullRereshLayout.onRefreshSuccess();
+                    loadMoreEnable(false);
                 }
             }
         }
@@ -165,6 +165,14 @@ public class SmartRecycleView extends RelativeLayout {
         }
     }
 
+    public<T> void removeAll(List<T> data){
+        mAdapter.getData().removeAll(data);
+        mAdapter.notifyDataSetChanged();
+        if (mAdapter.getData().size()==0){
+            setViewStatus(ViewStatus.NO_DATA);
+        }
+    }
+
     public void onLoadMoreErr() {
         mPullRereshLayout.onLoadMoreErr();
     }
@@ -192,6 +200,7 @@ public class SmartRecycleView extends RelativeLayout {
     public SmartRecycleView setFirstPage(int page) {
         this.currentPage = page;
         this.firstPage = page;
+        mPullRereshLayout.setFirstPage(firstPage);
         return this;
     }
 
@@ -205,15 +214,15 @@ public class SmartRecycleView extends RelativeLayout {
     }
 
     public RecyclerView.Adapter getAdapter() {
-        return mAdapter;
+        return mAdapter.getAdapter();
     }
 
-    public SmartRecycleView setAdapter(BaseQuickAdapter adapter) {
+    public SmartRecycleView setAdapter(IRVAdapter adapter) {
         mAdapter = adapter;
         if (adapter == null) {
             throw new NullPointerException("adapter不能为空");
         }
-        mRecyclerView.setAdapter(adapter);
+        mRecyclerView.setAdapter(adapter.getAdapter());
         return this;
     }
 
