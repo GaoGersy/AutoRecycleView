@@ -1,5 +1,8 @@
 package com.gersion.smartrecycleviewlibrary;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -268,20 +271,17 @@ public class SmartRecycleView extends RelativeLayout {
                 mFailedView.setVisibility(GONE);
                 mRecyclerView.setVisibility(GONE);
             } else if (status == ViewStatus.FAILED) {
-                mLoadingView.setVisibility(GONE);
                 mNoDataView.setVisibility(GONE);
-                mFailedView.setVisibility(VISIBLE);
                 mRecyclerView.setVisibility(GONE);
+                hideAniamtor(mLoadingView,mFailedView);
             } else if (status == ViewStatus.NO_DATA) {
-                mLoadingView.setVisibility(GONE);
-                mNoDataView.setVisibility(VISIBLE);
                 mFailedView.setVisibility(GONE);
                 mRecyclerView.setVisibility(GONE);
+                hideAniamtor(mLoadingView,mNoDataView);
             } else if (status == ViewStatus.SUCCESS) {
-                mLoadingView.setVisibility(GONE);
+                hideAniamtor(mLoadingView,mRecyclerView);
                 mNoDataView.setVisibility(GONE);
                 mFailedView.setVisibility(GONE);
-                mRecyclerView.setVisibility(VISIBLE);
             }
         } catch (NullPointerException e) {
 
@@ -297,6 +297,24 @@ public class SmartRecycleView extends RelativeLayout {
             mLoadMoreEnable = false;
             mIsLoadMore = false;
         }
+    }
+
+    private void hideAniamtor(View hideView, final View showView){
+        ObjectAnimator animator = ObjectAnimator.ofFloat(hideView,"alpha",1f,0f);
+        animator.setDuration(500);
+        animator.start();
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                showView.setVisibility(VISIBLE);
+            }
+        });
+    }
+
+    private void showAniamtor(View view){
+        ObjectAnimator animator = ObjectAnimator.ofFloat(view,"alpha",0f,1f);
+        animator.setDuration(500);
+        animator.start();
     }
 
     public View setFailedView(){

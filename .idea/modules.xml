@@ -6,9 +6,7 @@
       <module fileurl="file://C:\project\AutoRecycleView\.idea\RefreshRecycleView.iml" filepath="C:\project\AutoRecycleView\.idea\RefreshRecycleView.iml" />
       <module fileurl="file://D:\AndroidProject\RefreshRecycleView\app\RefreshRecycleView-app.iml" filepath="D:\AndroidProject\RefreshRecycleView\app\RefreshRecycleView-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\project\AutoRecycleView\app\app.iml" filepath="C:\project\AutoRecycleView\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/smartrecycleviewlibrary/smartrecycleviewlibrary.iml" filepath="$PROJECT_DIR$/smartrecycleviewlibrary/smartrecycleviewlibrary.iml" />
-      <module fileurl="file://C:\project\AutoRecycleView\smartrecycleviewlibrary\smartrecycleviewlibrary.iml" filepath="C:\project\AutoRecycleView\smartrecycleviewlibrary\smartrecycleviewlibrary.iml" />
     </modules>
   </component>
 </project>
