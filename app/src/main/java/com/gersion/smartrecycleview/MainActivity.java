@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 .setAdapter(mAdapter)
                 .loadMoreEnable(true)
                 .refreshEnable(true)
-                .setLayoutManger(SmartRecycleView.LayoutManagerType.LINEAR_LAYOUT)
+                .setLayoutManger(SmartRecycleView.LayoutManagerType.GRID_LAYOUT)
                 .setRefreshListener(new PullToRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh(int page) {

@@ -1,6 +1,9 @@
 package com.gersion.smartrecycleviewlibrary;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,8 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.gersion.smart.R;
+import com.gersion.smartrecycleviewlibrary.ptr2.IRVAdapter;
 import com.gersion.smartrecycleviewlibrary.ptr2.PullToRefreshLayout;
 
 import java.util.List;
@@ -38,7 +41,7 @@ public class SmartRecycleView extends RelativeLayout {
     private boolean mIsLoadMore;
     private boolean mLoadMoreEnable;
     private LayoutManagerType mLayoutManagerType;
-    private BaseQuickAdapter mAdapter;
+    private IRVAdapter mAdapter;
     private int currentPage = 0;
     private int firstPage;//第一页的序号
     private boolean isFirstLoad = true;//第一次初始化加载
@@ -100,7 +103,13 @@ public class SmartRecycleView extends RelativeLayout {
         }
         addView(mLoadingView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT));
-        mLoadingView.setVisibility(View.GONE);
+        mLoadingView.setVisibility(View.VISIBLE);
+        mLoadingView.setBackgroundColor(Color.parseColor("#ffffff"));
+
+    }
+
+    public RecyclerView getRecyclerView() {
+        return mRecyclerView;
     }
 
     private void initListener() {
@@ -113,7 +122,6 @@ public class SmartRecycleView extends RelativeLayout {
     public <T> void onRefresh(List<T> data) {
         if (data == null) {
             if (isFirstLoad) {
-                isFirstLoad = false;
                 setViewStatus(ViewStatus.FAILED);
             } else {
                 mPullRereshLayout.onRefreshErr();
@@ -121,17 +129,19 @@ public class SmartRecycleView extends RelativeLayout {
         } else {
             if (isFirstLoad) {
                 isFirstLoad = false;
-                setViewStatus(ViewStatus.SUCCESS);
             }
             if (data.size() == 0) {
                 setViewStatus(ViewStatus.NO_DATA);
+                refreshEnable(false);
             } else {
-                currentPage = firstPage+1;
+                setViewStatus(ViewStatus.SUCCESS);
+                currentPage = firstPage + 1;
                 mAdapter.setNewData(data);
                 if (data.size() >= mPageSize) {
                     mPullRereshLayout.onRefreshSuccess();
                 } else {
-                    mPullRereshLayout.setNoMoreData(true);
+                    mPullRereshLayout.onRefreshSuccess();
+                    loadMoreEnable(false);
                 }
             }
         }
@@ -157,11 +167,19 @@ public class SmartRecycleView extends RelativeLayout {
         mPullRereshLayout.setCurrentPage(currentPage);
     }
 
-    public <T> void handleData(List<T> data){
-        if (isRefresh){
+    public <T> void handleData(List<T> data) {
+        if (isRefresh) {
             onRefresh(data);
-        }else{
+        } else {
             onLoadMore(data);
+        }
+    }
+
+    public <T> void removeAll(List<T> data) {
+        mAdapter.getData().removeAll(data);
+        mAdapter.notifyDataSetChanged();
+        if (mAdapter.getData().size() == 0) {
+            setViewStatus(ViewStatus.NO_DATA);
         }
     }
 
@@ -192,6 +210,7 @@ public class SmartRecycleView extends RelativeLayout {
     public SmartRecycleView setFirstPage(int page) {
         this.currentPage = page;
         this.firstPage = page;
+        mPullRereshLayout.setFirstPage(firstPage);
         return this;
     }
 
@@ -205,15 +224,15 @@ public class SmartRecycleView extends RelativeLayout {
     }
 
     public RecyclerView.Adapter getAdapter() {
-        return mAdapter;
+        return mAdapter.getAdapter();
     }
 
-    public SmartRecycleView setAdapter(BaseQuickAdapter adapter) {
+    public SmartRecycleView setAdapter(IRVAdapter adapter) {
         mAdapter = adapter;
         if (adapter == null) {
             throw new NullPointerException("adapter不能为空");
         }
-        mRecyclerView.setAdapter(adapter);
+        mRecyclerView.setAdapter(adapter.getAdapter());
         return this;
     }
 
@@ -259,24 +278,37 @@ public class SmartRecycleView extends RelativeLayout {
                 mFailedView.setVisibility(GONE);
                 mRecyclerView.setVisibility(GONE);
             } else if (status == ViewStatus.FAILED) {
-                mLoadingView.setVisibility(GONE);
                 mNoDataView.setVisibility(GONE);
                 mFailedView.setVisibility(VISIBLE);
                 mRecyclerView.setVisibility(GONE);
+                hideView(mLoadingView);
             } else if (status == ViewStatus.NO_DATA) {
-                mLoadingView.setVisibility(GONE);
                 mNoDataView.setVisibility(VISIBLE);
                 mFailedView.setVisibility(GONE);
                 mRecyclerView.setVisibility(GONE);
+                hideView(mLoadingView);
             } else if (status == ViewStatus.SUCCESS) {
-                mLoadingView.setVisibility(GONE);
                 mNoDataView.setVisibility(GONE);
                 mFailedView.setVisibility(GONE);
                 mRecyclerView.setVisibility(VISIBLE);
+                hideView(mLoadingView);
             }
         } catch (NullPointerException e) {
 
         }
+    }
+
+    private void hideView(final View view){
+        view.animate()
+                .alpha(0)
+                .setDuration(500)
+                .setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        view.setVisibility(GONE);
+                    }
+                })
+                .start();
     }
 
     //数据请求失败调用
@@ -290,15 +322,15 @@ public class SmartRecycleView extends RelativeLayout {
         }
     }
 
-    public View setFailedView(){
+    public View setFailedView() {
         return null;
     }
 
-    public View setNoDataView(){
+    public View setNoDataView() {
         return null;
     }
 
-    public View setLoadingView(){
+    public View setLoadingView() {
         return null;
     }
 
@@ -347,6 +379,7 @@ public class SmartRecycleView extends RelativeLayout {
             public void onRefresh(int page) {
                 setListener(listener, true, page);
             }
+
             @Override
             public void onLoadMore(int page) {
                 setListener(listener, false, page);
@@ -357,13 +390,13 @@ public class SmartRecycleView extends RelativeLayout {
         return this;
     }
 
-    private void setListener(PullToRefreshLayout.OnRefreshListener listener,boolean isRefresh,int page) {
+    private void setListener(PullToRefreshLayout.OnRefreshListener listener, boolean isRefresh, int page) {
         if (isRefresh) {
             this.isRefresh = true;
             if (listener != null) {
                 listener.onRefresh(page);
             }
-        }else{
+        } else {
             this.isRefresh = false;
             if (listener != null) {
                 listener.onLoadMore(page);
