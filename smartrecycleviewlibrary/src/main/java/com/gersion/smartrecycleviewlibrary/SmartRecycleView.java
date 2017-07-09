@@ -39,13 +39,13 @@ public class SmartRecycleView extends RelativeLayout {
     private View mLoadingView;
     private int mPageSize = 20;
     private boolean mIsLoadMore;
-    private boolean mLoadMoreEnable;
     private LayoutManagerType mLayoutManagerType;
     private IRVAdapter mAdapter;
     private int currentPage = 0;
     private int firstPage;//第一页的序号
     private boolean isFirstLoad = true;//第一次初始化加载
     private boolean isRefresh = true;//判断是不是下拉刷新，不然就是上拉加载
+    private ViewGroup mContainer;//装SmartRecyclerView的容器
 
     public SmartRecycleView(Context context) {
         this(context, null);
@@ -299,6 +299,9 @@ public class SmartRecycleView extends RelativeLayout {
     }
 
     private void hideView(final View view){
+        if (view.getVisibility()==GONE){
+            return;
+        }
         view.animate()
                 .alpha(0)
                 .setDuration(500)
@@ -317,7 +320,6 @@ public class SmartRecycleView extends RelativeLayout {
         if (!mIsLoadMore) {
             setViewStatus(ViewStatus.FAILED);
         } else {
-            mLoadMoreEnable = false;
             mIsLoadMore = false;
         }
     }
@@ -420,5 +422,20 @@ public class SmartRecycleView extends RelativeLayout {
         //ONEN_LAYOUT,
         //COLUMN_LAYOUT,
         //STICKY_LAYOUT,
+    }
+
+    public static class Builder {
+        private Context mContext;
+        private View mFailedView;
+        private View mNoDataView;
+        private View mLoadingView;
+        private int mPageSize = 20;
+        private boolean mIsLoadMore;
+        private SmartRecycleView.LayoutManagerType mLayoutManagerType;
+        private IRVAdapter mAdapter;
+        private int firstPage;//第一页的序号
+        private boolean isFirstLoad = true;//第一次初始化加载
+        private boolean isRefresh = true;//判断是不是下拉刷新，不然就是上拉加载
+        private ViewGroup mContainer;
     }
 }

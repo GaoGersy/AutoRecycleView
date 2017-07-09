@@ -13,14 +13,14 @@ import java.util.List;
  * Created by a3266 on 2017/5/6.
  */
 
-public class PullAdapter extends BaseQuickAdapter<MainActivity.Bean, BaseViewHolder> implements IRVAdapter {
+public class PullAdapter extends BaseQuickAdapter<Bean, BaseViewHolder> implements IRVAdapter {
 
-    public PullAdapter(int layoutResId, @Nullable List<MainActivity.Bean> data) {
+    public PullAdapter(int layoutResId, @Nullable List<Bean> data) {
         super(layoutResId, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder baseViewHolder, MainActivity.Bean bean) {
+    protected void convert(BaseViewHolder baseViewHolder, Bean bean) {
         baseViewHolder.setText(R.id.tv_content,bean.cotent);
     }
 

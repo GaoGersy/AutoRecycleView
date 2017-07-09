@@ -4,23 +4,21 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
         tools:context="com.gersion.smartrecycleview.MainActivity"
         >
-
-    <!--<com.gersion.smartrecycleviewlibrary.view.ptr2.PullToRefreshLayout-->
-            <!--android:id="@+id/pullRereshLayout"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--&gt;-->
-        <!--<android.support.v7.widget.RecyclerView-->
-                <!--android:id="@+id/recycleView"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--/>-->
-    <!--</com.gersion.smartrecycleviewlibrary.view.ptr2.PullToRefreshLayout>-->
-    <com.gersion.smartrecycleviewlibrary.SmartRecycleView
-            android:id="@+id/testView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+    <Button
+            android:text="View模式"
+            android:onClick="toViewTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    <Button
+            android:text="Builder模式"
+            android:layout_marginTop="10dp"
+            android:onClick="toBuilderTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             />
 </LinearLayout>
