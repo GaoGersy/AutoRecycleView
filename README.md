@@ -76,7 +76,7 @@ mSmartRecycleView = new SmartRecycler.Builder(this, container, mAdapter)
                 .build();
                 
 //在加载服务器数据完成后调用      
-mTestView.handleData(list);
+mSmartRecycleView.handleData(list);
 ```
 [简书](http://www.jianshu.com/p/cc9b5dc2b203)
 有好的建议记得联系我哟--gaogersy@163.com
