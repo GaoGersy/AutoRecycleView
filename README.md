@@ -16,7 +16,7 @@ github：[AutoRecycleView](https://github.com/GaoGersy/AutoRecycleView/tree/mast
 ***
 ##### 如何使用？
 
-1.在xml中
+###### 1.在xml中
 
 ```
 <com.gersion.smartrecycleviewlibrary.SmartRecycleView
@@ -48,7 +48,7 @@ mTestView.setFirstPage(1)
   //在加载服务器数据完成后调用      
   mTestView.handleData(list);
 ```
-2.Builder模式
+####### 2.Builder模式
 
 ```
 mSmartRecycleView = new SmartRecycler.Builder(this, container, mAdapter)
