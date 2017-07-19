@@ -8,9 +8,9 @@
 ##### AutoRecycleView有何特点？
 
 > 1. 可以自定义空白页面和错误页面及加载的页面，如果不设置会调用默认的页面(肯定是很简单的实现啦，项目需求才是王道啊)。加载完成后会有一个透明度动画，让界面切换不再生硬(话说这是借鉴了微信的做法)。
-2. 只用将请求后得到的数据传给AutoRecycleView，是不是第一页，是刷新呢，还是加载更多，是不是还可以上拉加载更多,要传给后台的page的值是多少呢...这些你都不用关心，内部已经贴心的帮你处理完成。
-3. 可以在Xml中直接当成view使用，也可以使用builder模式在代码中使用。
-4. Adapter需要实现IRVAdapter接口
+> 2. 只用将请求后得到的数据传给AutoRecycleView，是不是第一页，是刷新呢，还是加载更多，是不是还可以上拉加载更多,要传给后台的page的值是多少呢...这些你都不用关心，内部已经贴心的帮你处理完成。
+> 3. 可以在Xml中直接当成view使用，也可以使用builder模式在代码中使用。
+> 4. Adapter需要实现IRVAdapter接口
 
 github：[AutoRecycleView](https://github.com/GaoGersy/AutoRecycleView/tree/master)
 ***
