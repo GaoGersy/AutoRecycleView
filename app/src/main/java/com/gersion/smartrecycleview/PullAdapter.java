@@ -52,4 +52,9 @@ public class PullAdapter extends BaseQuickAdapter<Bean, BaseViewHolder> implemen
         mData.remove(data);
         notifyDataSetChanged();
     }
+
+    @Override
+    public List<Bean> getData() {
+        return mData;
+    }
 }

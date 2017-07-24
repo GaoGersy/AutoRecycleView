@@ -17,15 +17,16 @@ public class ViewTestActivity extends AppCompatActivity {
 
     private ArrayList<Bean> data = new ArrayList<>();
     private PullAdapter mAdapter;
-    private SmartRecycleView mTestView;
+    private SmartRecycleView mSmartRecycleView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_test);
         mAdapter = new PullAdapter(R.layout.item_show, data);
-        mTestView = (SmartRecycleView) findViewById(R.id.testView);
-        mTestView.setFirstPage(1)
+        mSmartRecycleView = (SmartRecycleView) findViewById(R.id.testView);
+
+        mSmartRecycleView.setFirstPage(1)
                 .setAutoRefresh(true)
                 .setPageSize(20)
                 .setAdapter(mAdapter)
@@ -257,7 +258,7 @@ public class ViewTestActivity extends AppCompatActivity {
                         list.add(bean);
                     }
                 }
-                mTestView.handleData(list);
+                mSmartRecycleView.handleData(list);
             }
         }, 3000);
     }

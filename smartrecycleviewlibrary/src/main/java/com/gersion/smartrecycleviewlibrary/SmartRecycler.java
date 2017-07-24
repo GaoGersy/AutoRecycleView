@@ -68,7 +68,8 @@ public class SmartRecycler {
 
     private SmartRecycleView into(ViewGroup container){
         ViewGroup.LayoutParams params =
-                new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
+                new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT);
         container.addView(mSmartRecycleView,params);
         return mSmartRecycleView;
     }

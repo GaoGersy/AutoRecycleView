@@ -74,7 +74,6 @@ public class SmartRecycleView extends RelativeLayout {
     }
 
     private void init() {
-        mFailedView = setFailedView();
         if (mFailedView == null) {
             mFailedView = LayoutInflater.from(mContext).inflate(R.layout.view_falied, null);
             mFailedView.setVisibility(View.GONE);
@@ -89,7 +88,6 @@ public class SmartRecycleView extends RelativeLayout {
         addView(mFailedView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT));
 
-        mNoDataView = setNoDataView();
         if (mNoDataView == null) {
             mNoDataView = LayoutInflater.from(mContext).inflate(R.layout.view_no_data, null);
         }
@@ -97,7 +95,6 @@ public class SmartRecycleView extends RelativeLayout {
                 ViewGroup.LayoutParams.MATCH_PARENT));
         mNoDataView.setVisibility(View.GONE);
 
-        mLoadingView = setLoadingView();
         if (mLoadingView == null) {
             mLoadingView = LayoutInflater.from(mContext).inflate(R.layout.view_loading, null);
         }
@@ -324,15 +321,18 @@ public class SmartRecycleView extends RelativeLayout {
         }
     }
 
-    public View setFailedView() {
-        return null;
+    public SmartRecycleView setFailedView(View failedView) {
+        this.mFailedView = failedView;
+        return this;
     }
 
-    public View setNoDataView() {
-        return null;
+    public SmartRecycleView setNoDataView(View noDataView) {
+        this.mNoDataView = noDataView;
+        return this;
     }
 
-    public View setLoadingView() {
+    public SmartRecycleView setLoadingView(View loadingView) {
+        this.mLoadingView = loadingView;
         return null;
     }
 
@@ -392,7 +392,8 @@ public class SmartRecycleView extends RelativeLayout {
         return this;
     }
 
-    private void setListener(PullToRefreshLayout.OnRefreshListener listener, boolean isRefresh, int page) {
+    private void setListener(PullToRefreshLayout.OnRefreshListener listener,
+                             boolean isRefresh, int page) {
         if (isRefresh) {
             this.isRefresh = true;
             if (listener != null) {

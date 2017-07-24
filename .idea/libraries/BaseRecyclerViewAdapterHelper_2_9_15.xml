@@ -1,12 +1,10 @@
 <component name="libraryTable">
   <library name="BaseRecyclerViewAdapterHelper-2.9.15">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.android/build-cache/dc1f260ff122d7cd3daf76f5ccc7daf40221d231/output/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.android/build-cache/dc1f260ff122d7cd3daf76f5ccc7daf40221d231/output/res" />
+      <root url="file://$USER_HOME$/.android/build-cache/9bb971170254067e0365d27ee657dd1328b94d8c/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/9bb971170254067e0365d27ee657dd1328b94d8c/output/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.CymChad/BaseRecyclerViewAdapterHelper/2.9.15/5969927ad97a015b832b9ace95384096871c0881/BaseRecyclerViewAdapterHelper-2.9.15-sources.jar!/" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>
