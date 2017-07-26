@@ -322,18 +322,24 @@ public class SmartRecycleView extends RelativeLayout {
     }
 
     public SmartRecycleView setFailedView(View failedView) {
-        this.mFailedView = failedView;
+        if (failedView!=null) {
+            this.mFailedView = failedView;
+        }
         return this;
     }
 
     public SmartRecycleView setNoDataView(View noDataView) {
-        this.mNoDataView = noDataView;
+        if (noDataView!=null) {
+            this.mNoDataView = noDataView;
+        }
         return this;
     }
 
     public SmartRecycleView setLoadingView(View loadingView) {
-        this.mLoadingView = loadingView;
-        return null;
+        if (loadingView!=null) {
+            this.mLoadingView = loadingView;
+        }
+        return this;
     }
 
     public SmartRecycleView refreshEnable(boolean enable) {
