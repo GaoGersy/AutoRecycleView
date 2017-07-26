@@ -237,14 +237,6 @@ public class SmartRecycleView extends RelativeLayout {
         return mAdapter.getData();
     }
 
-//    public void onRefresh() {
-//        mPullRereshLayout.setRefreshing(true);
-//        if (mRefreshListener != null) {
-//            mRefreshListener.onRefresh();
-//            setViewStatus(ViewStatus.LOADING);
-//        }
-//    }
-
     //刷新完成添加列表数据
     public <T> void onRefreshComplete(List<T> list) {
         mPullRereshLayout.setRefreshing(false);
@@ -429,20 +421,5 @@ public class SmartRecycleView extends RelativeLayout {
         //ONEN_LAYOUT,
         //COLUMN_LAYOUT,
         //STICKY_LAYOUT,
-    }
-
-    public static class Builder {
-        private Context mContext;
-        private View mFailedView;
-        private View mNoDataView;
-        private View mLoadingView;
-        private int mPageSize = 20;
-        private boolean mIsLoadMore;
-        private SmartRecycleView.LayoutManagerType mLayoutManagerType;
-        private IRVAdapter mAdapter;
-        private int firstPage;//第一页的序号
-        private boolean isFirstLoad = true;//第一次初始化加载
-        private boolean isRefresh = true;//判断是不是下拉刷新，不然就是上拉加载
-        private ViewGroup mContainer;
     }
 }

@@ -140,11 +140,6 @@ public class SmartRecycler {
             return this;
         }
 
-//        public Builder setAdapter(IRVAdapter adapter) {
-//            mAdapter = adapter;
-//            return this;
-//        }
-
         public Builder setFirstPage(int firstPage) {
             this.firstPage = firstPage;
             return this;
@@ -159,11 +154,6 @@ public class SmartRecycler {
             isRefresh = refresh;
             return this;
         }
-
-//        public Builder setContainer(ViewGroup container) {
-//            mContainer = container;
-//            return this;
-//        }
 
         public Builder setAutoRefresh(boolean autoRefresh) {
             this.autoRefresh = autoRefresh;

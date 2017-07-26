@@ -38,8 +38,6 @@ public class PullToRefreshLayout extends SuperSwipeRefreshLayout {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-//                setRefreshing(true);
-//                refreshView.onRefreshing();
                 if (listener != null) {
                     listener.onRefresh(mFirstPage);
                 }
