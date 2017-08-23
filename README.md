@@ -13,6 +13,20 @@
 github：[AutoRecycleView](https://github.com/GaoGersy/AutoRecycleView/tree/master)
 ***
 ##### 如何使用？
+在项目级build.gradle加入
+```
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+在module级build.gradle加入
+```
+compile 'com.github.GaoGersy:AutoRecycleView:1.0.1'
+
+```
 
 1.在xml中
 
