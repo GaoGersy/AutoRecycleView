@@ -136,6 +136,7 @@ public class SmartRecycleView extends RelativeLayout {
                 mAdapter.setNewData(data);
                 if (data.size() >= mPageSize) {
                     mPullRereshLayout.onRefreshSuccess();
+                    loadMoreEnable(true);
                 } else {
                     mPullRereshLayout.onRefreshSuccess();
                     loadMoreEnable(false);

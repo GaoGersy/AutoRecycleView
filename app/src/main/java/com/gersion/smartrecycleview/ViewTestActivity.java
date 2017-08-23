@@ -28,11 +28,11 @@ public class ViewTestActivity extends AppCompatActivity {
 
         mSmartRecycleView.setFirstPage(1)
                 .setAutoRefresh(true)
-                .setPageSize(20)
+                .setPageSize(17)
                 .setAdapter(mAdapter)
                 .loadMoreEnable(true)
                 .refreshEnable(true)
-                .setLayoutManger(SmartRecycleView.LayoutManagerType.GRID_LAYOUT)
+                .setLayoutManger(SmartRecycleView.LayoutManagerType.LINEAR_LAYOUT)
                 .setRefreshListener(new PullToRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh(int page) {
@@ -61,8 +61,8 @@ public class ViewTestActivity extends AppCompatActivity {
                 ArrayList<Bean> list = new ArrayList<>();
                 if (page == 3) {
                 } else {
-                    int num = 20 * page;
-                    for (int i = num - 20; i < num; i++) {
+                    int num = 17 * page;
+                    for (int i = num - 17; i < num; i++) {
                         Bean bean = new Bean();
                         bean.cotent = "第" + i + "页";
                         list.add(bean);

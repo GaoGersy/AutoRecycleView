@@ -31,7 +31,7 @@ public class BuilderTestActivity extends AppCompatActivity {
         mSmartRecycleView = new SmartRecycler.Builder(this, container, mAdapter)
                 .setFirstPage(1)
                 .setAutoRefresh(true)
-                .setPageSize(20)
+                .setPageSize(10)
                 .setLoadMore(true)
                 .setRefresh(true)
                 .setLayoutManagerType(SmartRecycleView.LayoutManagerType.LINEAR_LAYOUT)
@@ -64,8 +64,8 @@ public class BuilderTestActivity extends AppCompatActivity {
                 ArrayList<Bean> list = new ArrayList<>();
                 if (page == 3) {
                 } else {
-                    int num = 20 * page;
-                    for (int i = num - 20; i < num; i++) {
+                    int num = 10 * page;
+                    for (int i = num - 10; i < num; i++) {
                         Bean bean = new Bean();
                         bean.cotent = "第" + i + "页";
                         list.add(bean);
