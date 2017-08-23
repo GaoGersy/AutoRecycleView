@@ -13,7 +13,7 @@
 github：[AutoRecycleView](https://github.com/GaoGersy/AutoRecycleView/tree/master)
 ***
 ##### 如何使用？
-在项目级builder.gradle加入
+在项目级build.gradle加入
 ```
 allprojects {
 		repositories {
@@ -22,7 +22,7 @@ allprojects {
 		}
 	}
 ```
-在module级builder.gradle加入
+在module级build.gradle加入
 ```
 compile 'com.github.GaoGersy:AutoRecycleView:1.0.1'
 
