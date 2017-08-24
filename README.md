@@ -23,9 +23,7 @@ allprojects {
 	}
 ```
 在module级build.gradle加入
-```
-compile 'com.github.GaoGersy:AutoRecycleView:1.0.1'
-
+```compile 'com.github.GaoGersy:AutoRecycleView:1.0.3'
 ```
 
 1.在xml中
