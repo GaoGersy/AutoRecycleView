@@ -141,6 +141,7 @@ public class SmartRecycleView extends RelativeLayout {
                     mPullRereshLayout.onRefreshSuccess();
                     loadMoreEnable(false);
                 }
+                refreshEnable(true);
             }
         }
         mPullRereshLayout.setCurrentPage(currentPage);
