@@ -316,15 +316,23 @@ public class SmartRecycleView extends RelativeLayout {
     }
 
     public SmartRecycleView setFailedView(View failedView) {
-        if (failedView!=null) {
-            this.mFailedView = failedView;
+        if (failedView != null) {
+          removeView(failedView);
+          this.mFailedView = failedView;
+          addView(mFailedView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+              ViewGroup.LayoutParams.MATCH_PARENT));
+          mFailedView.setVisibility(GONE);
         }
         return this;
     }
 
     public SmartRecycleView setNoDataView(View noDataView) {
-        if (noDataView!=null) {
-            this.mNoDataView = noDataView;
+        if (noDataView != null) {
+          removeView(mNoDataView);
+          this.mNoDataView = noDataView;
+          addView(mNoDataView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+              ViewGroup.LayoutParams.MATCH_PARENT));
+          mNoDataView.setVisibility(View.GONE);
         }
         return this;
     }
